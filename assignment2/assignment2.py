@@ -106,14 +106,12 @@ def all_employees_dict():
 
 #TASK 10
 def get_this_value():
-    """Return a specific value from the custom module"""
     return custom_module.secret
 
 print(get_this_value())
 
 #TASK 11
 def set_that_secret(new_secret):
-    """Set the secret value in the custom module"""
     custom_module.set_secret(new_secret)
 
 print(set_that_secret("ABC"))
@@ -141,11 +139,11 @@ print(minutes1, minutes2)
 
 #TASK 13
 def create_minutes_set():
-    """Create a set of unique values from the minutes rows"""
     set1 = set(minutes1["rows"])
     set2 = set(minutes2["rows"])
     set1.update(set2)
     return set1
+
 
 minutes_set = create_minutes_set()
 print(minutes_set)
@@ -154,36 +152,32 @@ print(minutes_set)
 #TASK 14
 from datetime import datetime
 
-def create_minutes_list(minutes_set):
-    """Create a list of tuples from the minutes rows with datetime objects"""
+def create_minutes_list():
     minutes_list = list(minutes_set)
-    
-    # Convert date strings to datetime objects
-    minutes = [
-        (x[0], datetime.strptime(x[1], "%B %d, %Y"))
-        for x in minutes_list
-    ]
-    
-    return minutes
 
-print(create_minutes_list(minutes_set))
+    minutes = map(
+        lambda row: (row[0], datetime.strptime(row[1], "%B %d, %Y")), minutes_list
+    )
+
+    return list(minutes)
+
+minutes_list = create_minutes_list()
+print(minutes_list)
 
 #TASK 15
 def write_sorted_list():
-    """Sort minutes_list, write to text file, and return sorted list"""
-    # Get the minutes_list
-    minutes_list = create_minutes_list(minutes_set)
-    
-    # Sort by datetime (second element of each tuple)
-    sorted_list = sorted(minutes_list, key=lambda x: x[1])
-    
-    # Write to text file
-    with open("sorted_minutes.txt", "w") as file:
-        for item in sorted_list:
-            file.write(f"{item[0]}: {item[1].strftime('%B %d, %Y')}\n")
-    
-    return sorted_list
+    minutes_list.sort(key=lambda row: row[1])
+    minutes = list(
+        map(lambda row: (row[0], datetime.strftime(row[1], "%B %d, %Y")), minutes_list)
+    )
 
-# Call the function
-sorted_minutes = write_sorted_list()
-print(sorted_minutes)
+    with open("./minutes.csv", "w") as file:
+        writer = csv.writer(file)
+
+        for row in minutes:
+            writer.writerow(row)
+
+    return minutes
+
+minutes = write_sorted_list()
+print(minutes)
