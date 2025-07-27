@@ -5,3 +5,9 @@ function: my_function_3 positional parameters: none keyword parameters: {'a': 1,
 function: my_function_1 positional parameters: none keyword parameters: none return: none 
 function: my_function_2 positional parameters: (1, 2, 3) keyword parameters: none return: True 
 function: my_function_3 positional parameters: none keyword parameters: {'a': 1, 'b': 2, 'c': 3} return: <function logger_decorator at 0x1002e8040> 
+function: my_function_1 positional parameters: none keyword parameters: none return: none 
+function: my_function_2 positional parameters: (1, 2, 3) keyword parameters: none return: True 
+function: my_function_3 positional parameters: none keyword parameters: {'a': 1, 'b': 2, 'c': 3} return: <function logger_decorator at 0x1008f0180> 
+function: my_function_1 positional parameters: none keyword parameters: none return: none 
+function: my_function_2 positional parameters: (1, 2, 3) keyword parameters: none return: True 
+function: my_function_3 positional parameters: none keyword parameters: {'a': 1, 'b': 2, 'c': 3} return: <function logger_decorator at 0x104393920> 
