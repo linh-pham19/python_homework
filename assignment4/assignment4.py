@@ -28,5 +28,31 @@ print(task1_older)
 task1_older_to_csv = 'employees.csv'
 task1_older.to_csv(task1_older_to_csv, index=False)
 
+# Task 2
+# Task 2.1 Read the CSV file
+task2_employees = pd.read_csv(task1_older_to_csv)
+print(task2_employees)
 
+# Task 2.2 Read JSON
+# How do you create a DataFrame from a JSON file?
+import json
 
+additional_employees = [
+    {"Name": "Eve", "Age": 28, "City": "Miami", "Salary": 60000},
+    {"Name": "Frank", "Age": 40, "City": "Seattle", "Salary": 95000}
+]
+
+with open('additional_employees.json', 'w') as json_file:
+    json.dump(additional_employees, json_file)
+
+#load json file into a DataFrame
+json_employees = pd.read_json('additional_employees.json')
+
+# verify the DataFrame
+print(json_employees)
+
+#task 2.3 Combine DataFrames
+more_employees = pd.concat([task2_employees, json_employees], ignore_index=True)
+print(more_employees)
+
+# Task 3
