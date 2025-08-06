@@ -72,4 +72,53 @@ print(employee_shape)
 more_employees_info = more_employees.info()
 print(more_employees_info)
 
-# Task 4
+# Task 4.1
+dirty_data = pd.read_csv('dirty_data.csv')
+
+
+print("Dirty Data:")
+print(dirty_data)
+
+
+clean_data = dirty_data.copy()
+
+
+print("\nClean Data (initial copy):")
+print(clean_data)
+
+#task 4.2
+#remove duplicates
+clean_data.drop_duplicates(inplace=True)
+print("\nClean Data (after removing duplicates):")
+print(clean_data)
+
+#4.3
+# Convert 'Age' to numeric, coercing errors
+clean_data['Age'] = pd.to_numeric(clean_data['Age'], errors='coerce')
+print("\nClean Data (after converting 'Age' to numeric):")
+print(clean_data)
+
+#4.4 convert 'Salary' to numeric, replacing 'unknown' and 'n/a' with NaN
+clean_data['Salary'] = clean_data['Salary'].replace(['unknown', 'n/a'], pd.NA)
+clean_data['Salary'] = pd.to_numeric(clean_data['Salary'], errors='coerce')
+print("\nClean Data (after converting 'Salary' to numeric):")
+print(clean_data)
+
+#4.5 fill numeric values with fillna. Fill Age with mean and salary with median
+clean_data['Age'].fillna(clean_data['Age'].mean(), inplace=True)
+clean_data['Salary'].fillna(clean_data['Salary'].median(), inplace=True)
+print("\nClean Data (after filling NaN values):")
+print(clean_data)
+
+#4.6 convert 'Hire Date' to datetime
+clean_data['Hire Date'] = pd.to_datetime(clean_data['Hire Date'], errors='coerce')
+clean_data['Hire Date'] = clean_data['Hire Date'].fillna(pd.Timestamp('today'))
+
+print("\nClean Data (after converting 'Hire Date' to datetime):")
+print(clean_data)
+
+#4.7 strip whitespace from 'Name' and 'Department' and standardize them to uppercase
+clean_data['Name'] = clean_data['Name'].str.strip()
+clean_data['Department'] = clean_data['Department'].str.strip().str.upper()
+print("\nClean Data (after stripping whitespace and standardizing 'Department'):")
+print(clean_data)
