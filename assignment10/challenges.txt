@@ -1,0 +1,11 @@
+When I was working on this code, I ran into a few different challenges.
+
+The first big one was scraping itself. The website loads content dynamically, so sometimes Selenium would try to grab elements before they finished loading. That meant I had to experiment with sleep() calls or better waiting strategies to make sure I was actually getting results. Pagination parsing was also tricky—my code assumes the results line always looks like “1 to 20 of 269 results.” If the site ever changes that format, my logic will break. On top of that, I had to keep in mind the ethics of scraping, since websites like this one might restrict automated access through their robots.txt file.
+
+Another issue was Selenium. Getting ChromeDriver set up with the right version sometimes caused headaches, especially when Chrome updated. Running in headless mode also caused differences in how elements loaded, so debugging wasn’t always straightforward. And since the site’s HTML and CSS could change at any time, my carefully chosen selectors (like .row or .title-content) might suddenly stop working.
+
+Data handling was another area I had to think about. Not every result had a title, author, or format, so I had to handle missing values gracefully. There was also the risk of duplicates across pages, and I needed to make sure special characters like accents in Spanish words didn’t break my CSV or JSON output.
+
+Finally, there were practical challenges with writing results to disk. By default, I saved get_books.csv and get_books.json into the script’s folder, but if I needed them in a specific assignment directory, I had to adjust paths. And if I scraped a lot of data, I had to think about file size and performance, since Selenium isn’t the fastest option.
+
+Overall, the hardest part was making the scraper both reliable and respectful: reliable, because dynamic websites and fragile selectors can break at any time, and respectful, because scraping too aggressively can overload servers or ignore the rules set by the site owners.
