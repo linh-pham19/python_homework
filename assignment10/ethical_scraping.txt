@@ -1,0 +1,17 @@
+Sections restricted for crawling:
+- /w/ (backend scripts)
+- /api/ (except API documentation endpoints)
+- /trap/ (honeypot area)
+- /wiki/Special: (all special pages)
+- Deletion discussions, admin logs, vandalism reports, copyright problem pages, and other sensitive community/admin workflow pages across different language Wikipedias.
+
+Specific rules for certain user agents:
+- Some bots (e.g., MJ12bot, HTTrack, WebReaper, wget) are completely disallowed from crawling.
+- Google advertising bot (Mediapartners-Google*) is disallowed.
+- Some bots (e.g., IsraBot) are allowed with no restrictions.
+- SemrushBot has a crawl-delay of 5 seconds.
+
+Reflection on robots.txt:
+Websites use robots.txt to guide web crawlers on which parts of a site can or cannot be accessed. 
+This helps protect server resources, avoid indexing of sensitive or irrelevant pages, and ensure that crawlers behave responsibly. 
+It promotes ethical scraping by setting clear boundaries that scrapers and search engines should respect.
